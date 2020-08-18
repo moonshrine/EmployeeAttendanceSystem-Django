@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<div class="container-fluid pt-5 pb-5" >
+	<div class="card col-sm-6 mx-auto bg-dark">
+		<div class="card-body text-center">
+			<h1 class="card-title py-2 text-white display-4">Register Employee</h1>
+			<p class="card-text">
+				<form class="needs-validated mx-auto d-block" method="POST" action="">
+					{% csrf_token %}
+					<!---Employee name--->
+					<div class="input-group mb-2 pt-2">
+						<div class="input-group-prepend">
+							<span class="input-group-text bg-warning" style="font-size: 24px;"><i class="fa fa-user"></i></span>
+						</div>
+						
+						{{form.ename}}
+						<!-- <input class="form-control" type="text" placeholder="Employee Name.." id="ename" name="ename" required> -->
+					</div>
+
+					<!---Employee Age--->
+					<div class="input-group mb-2">
+						<div class="input-group-prepend">
+							<span class="input-group-text fas fa-snowman bg-warning" style="font-size: 21px;"></span>
+						</div>
+						
+						{{form.age}}
+						<!-- <input class="form-control" type="number" placeholder="Age.." id="age" name="age" required> -->
+					</div>
+					<!---Employee email--->
+					<div class="input-group mb-2">
+						<div class="input-group-prepend">
+							<span class="input-group-text fas fa-envelope bg-warning" style="font-size: 21px;"></span>
+						</div>
+						
+						{{form.email}}
+						<!-- <input class="form-control" type="text" placeholder="Email.." id="email" name="email" required> -->
+					</div>
+
+					<!---Employee mobile number--->
+					<div class="input-group mb-2">
+						<div class="input-group-prepend">
+							<span class="input-group-text fas fa-address-book bg-warning" style="font-size: 24px;"></span>
+						</div>
+						<!-- Below code for Normal html code -->
+						<!-- <input class="form-control" type="text" name="mobileno" id="mobileno" placeholder="Mobile No.." required> -->
+						
+						{{form.mobileno}}
+					</div>
+
+					{% for field in form %}
+						{% for error in field.errors %}
+							<div class="alert alert-danger alert-dismissible fade show">
+								<button type="button" class="close" data-dismiss="alert">&times;</button>
+								<strong>{{error}}</strong>
+							</div>
+						{% endfor %}
+					{% endfor %}
+					
+					{% for message in messages %}
+						<div class="alert alert-success alert-dismissible fade show">
+							<button type="button" class="close" data-dismiss="alert">&times;</button>
+							<strong>{{message}}</strong>
+						</div>
+					{% endfor %}
+
+					<!----send OTP---->
+					<!-- <div class="input-group mb-2">
+						<div class="input-group-prepend">
+							<span class="input-group-text fas fa-key bg-warning" style="font-size: 21px;"></span>
+						</div>
+						<input class="form-control" type="text" name="otp" id="otp" placeholder="Enter OTP" required>
+						<div class="input-group-append">
+							<button class="btn btn-primary" type="button">Send OTP</button>
+						</div>	
+					</div> -->
+
+
+					<div class="row">
+						<div class="col">
+							<!----Sumbit//add user//register user--->
+							<input class="btn btn-success w-100 mt-2" type="submit" value="Add Employee"></input>		
+						</div>
+						<div class="col">
+							<!----Cancel Button--->
+							<input class="btn btn-danger w-100 mt-2" type="button" value="Cancel"></input>		
+						</div>
+					</div>
+					
+
+				</form>
+			</p>
+		</div>
+	</div>
+</div>
+
+<script>
+	//Query All input fields
+	var form_fields = document.getElementsByTagName('input')
+
+	for (var field in form_fields) {
+	form_fields[field].className += ' form-control'
+	}
+
+</script>
+
+{% endblock content %}

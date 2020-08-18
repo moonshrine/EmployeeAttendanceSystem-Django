@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container-fluid pt-5 pb-5" >
+	<div class="card col-sm-6 mx-auto bg-dark">
+		<div class="card-body text-center">
+			<h1 class="card-title py-2 text-white display-4">Employee time Entry</h1>
+			<p class="card-text">
+				<form class="needs-validated mx-auto d-block" method="POST" action="">
+					{% csrf_token %}
+					<!---Employee email--->
+					<div class="input-group mb-2 pt-2">
+						<div class="input-group-prepend">
+							<span class="input-group-text bg-warning" style="font-size: 22px;"><i class="fas fa-envelope"></i></span>
+						</div>
+						<input class="form-control" type="text" placeholder="Email.." id="email" name="email" required>
+					</div>
+
+					<!---Entry Date--->
+					<div class="input-group mb-2">
+						<div class="input-group-prepend">
+							<span class="input-group-text bg-warning" style="font-size: 24px;"><i class="fas fa-calendar-alt"></i></span>
+						</div>
+						
+						<input class="form-control" type="date" id="date" name="date" required>
+					</div>
+					<!---In time--->
+					<div class="input-group mb-2">
+						<div class="input-group-prepend">
+							<span class="input-group-text fas fa-hand-point-left bg-warning" style="font-size: 22px;"></span>
+						</div>
+						
+						<input class="form-control" type="time" id="intime" name="intime" required>
+					</div>
+
+					<!---Out time--->
+					<div class="input-group mb-2">
+						<div class="input-group-prepend">
+							<span class="input-group-text fas fa-hand-point-right bg-warning" style="font-size: 22px;"></span>
+						</div>
+
+						<input class="form-control" type="time" id="outtime" name="outtime" required>
+					</div>
+
+					{% for field in form %}
+						{% for error in field.errors %}
+							<div class="alert alert-danger alert-dismissible fade show">
+								<button type="button" class="close" data-dismiss="alert">&times;</button>
+								<strong>{{error}}</strong>
+							</div>
+						{% endfor %}
+					{% endfor %}
+					{% for message in messages %}
+						<div class="alert alert-success alert-dismissible fade show">
+							<button type="button" class="close" data-dismiss="alert">&times;</button>
+							<strong>{{message}}</strong>
+						</div>
+					{% endfor %}
+
+					<div class="row">
+						<div class="col">
+							<!----Sumbit//add user//register user--->
+							<input class="btn btn-success w-100 mt-2" type="submit" value="Entry Data"></input>		
+						</div>
+						<div class="col">
+							<!----Cancel Button--->
+							<input class="btn btn-danger w-100 mt-2" type="button" value="Cancel"></input>		
+						</div>
+					</div>
+					
+
+				</form>
+			</p>
+		</div>
+	</div>
+</div>
+
+{% endblock content %}

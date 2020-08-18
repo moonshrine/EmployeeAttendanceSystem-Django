@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-----Bootstrap4 Carousel--->
+<div class="container-fluid bg-dark px-0 mt-2">
+	<div class="carousel slide" id="carousel1" data-ride="carousel">
+		<!--Indicators-->
+		<ul class="carousel-indicators">
+			<li data-target="#carousel1" data-slide-to="0" class="active"></li>
+			<li data-target="#carousel1" data-slide-to="1"></li>
+			<li data-target="#carousel1" data-slide-to="2"></li>
+		</ul>
+
+		<!--The Slideshow-->
+		<div class="carousel-inner">
+			<div class="carousel-item active">
+				{% load static %}
+				<img src="{% static 'images/bridge1.jpg' %}" alt="Photo1" class="d-block w-100">
+				<div class="carousel-caption">
+					<h1 class="text fas fa-dice-d20" style="font-size: 200px;"></h1>
+					<h1 class="display-6">Welocome to Our Gaming Studio</h1>
+					<p class="lead">Game devlopment is such a great skill</p>
+				</div>
+			</div>
+
+			<div class="carousel-item">
+				{% load static %}
+				<img src="{% static 'images/bridge.jpg' %}" alt="photo2" class="d-block w-100">
+				<div class="carousel-caption">
+					<h1 class="text fas fa-gamepad" style="font-size: 200px;"></h1>
+					<h1 class="display-6">Digital Bunny Studios</h1>
+					<p class="lead">Gaming studio</p>
+				</div>
+			</div>
+
+			<div class="carousel-item">
+				{% load static %}
+				<img src="{% static 'images/structure.jpg' %}" alt="Photo3" class="d-block w-100">
+				<div class="carousel-caption">
+					<h1 class="img-fluid fas fa-rocket" style="font-size: 200px;"></h1>
+					<h1 class="display-6 text-white"> Let Your Dreams Fly<span class="text far fa-paper-plane"></span></h1>
+					<p class="lead">Gaming studio</p>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+<div class="container-fluid bg-dark">
+	<form class="needs-validated col-sm-4 mx-auto d-block" method="POST" action="">{% csrf_token %}
+
+		<!---Username/email field--->
+		<div class="input-group mb-3 pt-5">
+			<div class="input-group-prepend">
+				<span class="input-group-text fa fa-user bg-warning" style="font-size: 24px;"></span>
+			</div>
+			
+			<input class="form-control" type="text" name="uname" id="uname" placeholder="Enter Username/email">
+		</div>
+
+		<!---Password field--->
+		<div class="input-group mb-3">
+			<div class="input-group-prepend">
+				<span class="input-group-text fas fa-lock bg-warning" style="font-size: 24px;"></span>
+			</div>
+			
+			<input class="form-control" type="password" name="pass" id="pass" placeholder="Enter Password">
+		</div>
+		{% for message in messages %}
+			<div class="alert alert-info alert-dismissible fade show">
+				<button type="button" class="close" data-dismiss="alert">&times;</button>
+				<strong>{{message}}</strong>
+			</div>
+		{% endfor %}
+
+
+		<!----Submit/Login Button--->
+		<input class="btn btn-primary w-100 mb-5" type="submit" value="Login"></input>
+
+	</form>
+</div>
+
+<div class="jumbotron text-center mb-0 jumbotron-fluid">
+	<div class="container">
+		<h1 style="font-size: 64px;">Contact Us</h1>
+	</div>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<div class="container-fluid pt-5 pb-5" >
+	<div class="card col-sm-6 mx-auto bg-dark">
+		<div class="card-body text-center">
+			<h1 class="card-title py-2 text-white display-4">Update Profile</h1>
+			<p class="card-text">
+				<form class="needs-validated mx-auto d-block" method="POST">{% csrf_token %}
+
+					<!---New Password--->
+					<div class="input-group mb-2">
+						<div class="input-group-prepend">
+							<span class="input-group-text fas fa-user-secret bg-warning" style="font-size: 24px;"></span>
+						</div>
+						
+						<input class="form-control" type="passsword" name="pass1" id="pass1" placeholder="Enter New Password">
+					</div>
+
+					<!---Confirm New Password--->
+					<div class="input-group mb-2">
+						<div class="input-group-prepend">
+							<span class="input-group-text fas fa-user-secret bg-warning" style="font-size: 24px;"></span>
+						</div>
+						
+						<input class="form-control" type="text" name="pass2" id="pass2" placeholder="Enter Again New Password">
+					</div>
+
+					<!----send OTP---->
+					<div class="input-group mb-2">
+						<div class="input-group-prepend">
+							<span class="input-group-text fas fa-key bg-warning" style="font-size: 21px;"></span>
+						</div>
+						<input class="form-control" type="text" name="otp" id="otp" placeholder="Enter OTP">
+						<div class="input-group-append">
+							<button class="btn btn-primary" type="button">Send OTP</button>
+						</div>	
+					</div>
+
+
+					<div class="row">
+						<div class="col">
+							<!----Sumbit//add user//register user--->
+							<button class="btn btn-success w-100 mt-2" type="sumbit">Update Profile</button>		
+						</div>
+						<div class="col">
+							<!----Cancel Button--->
+							<button class="btn btn-danger w-100 mt-2" type="button">Cancel</button>		
+						</div>
+					</div>
+					
+
+				</form>
+			</p>
+		</div>
+	</div>
+</div>
+
+{% endblock content %}

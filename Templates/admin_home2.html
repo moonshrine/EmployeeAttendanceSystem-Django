@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container text-white bg-dark my-4">
+	<h1 class="text-center py-2 ">Employee Details</h1>
+	<input class="mx-auto mb-2 w-100 bg-light" type="text" name="searchbar" id="searchbar" placeholder="Search..." style="font-size: 24px">
+</div>
+<div class="container">
+	{% for stack in Employees %}
+		<div class="row" id="myEmployees">
+			{% for Employee in stack %}
+
+				<div class="col-sm-4" id="mycard">
+					<div class="card mx-auto mb-4 bg-dark text-white" style="max-width: 375px;min-height: 570px">
+						<div class="card-header" >
+							<a class="btn btn-warning d-block" href="{{ Employee.get_absolute_url }}">Details</a>
+						</div>
+						<div class="collapse show" id="{{ Employee.employeeid }}">
+							{% load static %}
+							<img class="card-img-top mx-auto d-block" src="{% static 'images/img_avatar1.png' %}", alt="card image">
+
+							<div class="card-body pb-0">
+								<h3 class="card-title text-center">{{ Employee.ename }}</h3>
+								<p class="card-text">
+									<div class="row">
+										<div class="col">Employee ID</div>
+										<div class="col">{{ Employee.employeeid }}</div>
+									</div>
+									<div class="row">
+										<div class="col">Age</div>
+										<div class="col">{{ Employee.age }}</div>
+									</div>
+									<div class="row">
+										<div class="col">Mobile</div>
+										<div class="col">{{ Employee.mobileno }}</div>
+									</div>
+								</p>
+							</div>
+						</div>
+						
+						<!-- <div class="collapse" id="{{ Employee.employeeid }}" >
+							<div class="card-body pb-0 ">
+								<h3 class="card-title text-center">{{ Employee.ename }}</h3>
+								<p class="card-text">
+									<div class="row">
+										<div class="col">Employee ID</div>
+										<div class="col"></div>
+									</div>
+									<div class="row">
+										<div class="col">Age</div>
+										<div class="col">{{ Employee.age }}</div>
+									</div>
+									<div class="row">
+										<div class="col">Mobile</div>
+										<div class="col">{{ Employee.mobileno }}</div>
+									</div>
+								</p>
+							</div>
+						</div> -->
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	{% endfor %}
+</div>
+
+<script>
+$(document).ready(function(){
+  $("#searchbar").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myEmployees #mycard").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+
+{% endblock content %}
