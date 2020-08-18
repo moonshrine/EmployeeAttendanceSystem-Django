@@ -15,17 +15,17 @@ import random, ast
 class SMSService():
 	def __init__(self, message_content):
 		self.msg_content = message_content
-		self.account_sid = 'ACfeecd487aedfb376b5a6962568d8cd36'
-		self.auth_token = 'eb1047bede79ca2087834d6f6cd02bb5'
+		self.account_sid = '*******************************'
+		self.auth_token = '*******************************'
 		self.client = Client(self.account_sid,self.auth_token)
 
 	def sendMessage(self):
 		try:
 			message = self.client.messages \
 								.create(
-									body="Hello Sonu,\n"+self.msg_content,
-									from_='+13477897533',
-									to='+919769254939'
+									body="Hello Moonshrine,\n"+self.msg_content,
+									from_='+1347789****',
+									to='+91*********'
 								)
 			print("SMS Sent, ID:",message.sid)
 		except:
@@ -39,8 +39,8 @@ class EmailService():
 		self.subject = subject
 		self.content = content	
 
-		self.sender_address = 'noreplysonu123@gmail.com'
-		self.sender_pass = 'passNO99'
+		self.sender_address = 'noreply*******@gmail.com'
+		self.sender_pass = '**********'
 
 	def sendMail(self):
 		try:
